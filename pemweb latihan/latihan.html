@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Kartika</title>
+    <style>
+        /* Styling umum */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            line-height: 1.6;
+        }
+
+        /* Navbar styling */
+        .navbar {
+            background-color: rgba(25, 25, 25, 0.7);
+            overflow: hidden;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar li {
+            display: inline-block;
+        }
+
+        .navbar a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 18px 25px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: rgba(0, 102, 204, 0.8);
+            color: white;
+        }
+
+        /* Page styling */
+        .page {
+            display: none;
+            padding: 40px 20px;
+            min-height: 80vh;
+        }
+
+        .active {
+            display: block;
+        }
+
+        /* Container styling - now transparent */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        /* Profile styling */
+        .profile {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #0066cc;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 102, 204, 0.5);
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        .profile h1 {
+            color: #ffffff;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .biodata-container {
+            margin: 20px auto;
+            max-width: 500px;
+        }
+
+        .biodata-container h3 {
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .profile-info {
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .profile-info p {
+            margin: 10px 0;
+            padding: 12px 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-left: 3px solid #0066cc;
+            border-radius: 5px;
+            display: grid;
+            grid-template-columns: 100px auto;
+            align-items: center;
+            text-align: left;
+            backdrop-filter: blur(3px);
+        }
+
+        .profile-info p strong {
+            color: #66b3ff;
+        }
+
+        /* Schedule styling */
+        .schedule {
+            padding: 30px;
+        }
+
+        .schedule h1 {
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            background-color: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(3px);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        th {
+            background-color: rgba(0, 102, 204, 0.7);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        tr:hover {
+            background-color: rgba(0, 102, 204, 0.3);
+        }
+
+        /* Button styling */
+        .btn {
+            display: inline-block;
+            background-color: rgba(0, 102, 204, 0.8);
+            color: white;
+            padding: 12px 25px;
+            margin: 20px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:hover {
+            background-color: rgba(0, 76, 153, 0.9);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Footer styling */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(25, 25, 25, 0.7);
+            color: white;
+            margin-top: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Center button container */
+        .button-container {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="#" onclick="showPage('home')">Home (Profil)</a></li>
+            <li><a href="#" onclick="showPage('schedule')">Jadwal</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home/Profile Page -->
+    <div id="home" class="page active">
+        <div class="container">
+            <div class="profile">
+                <img src="https://portalpopline.com.br/wp-content/uploads/2024/06/sabrina-carpenter-novo-album-anuncio-capa-data-jpg.webp" alt="Foto Kartika" class="profile-img">
+                <h1>Kartika adinda kd</h1>
+                
+                <div class="biodata-container">
+                    <h3>Biodata:</h3>
+                    
+                    <div class="profile-info">
+                        <p><strong>NPM:</strong> 2317051070</p>
+                        <p><strong>Jurusan:</strong> Ilmu Komputer</p>
+                        <p><strong>Kelas:</strong> D</p>
+                        <p><strong>Angkatan:</strong> 2023</p>
+                    </div>
+                </div>
+                
+                <div class="button-container">
+                    <button class="btn" onclick="showPage('schedule')">Lihat Jadwal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Schedule Page -->
+    <div id="schedule" class="page">
+        <div class="container">
+            <div class="schedule">
+                <h1>Jadwal Kuliah kelas D</h1>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Hari</th>
+                            <th>Jam</th>
+                            <th>Mata Kuliah</th>
+                            <th>Ruangan</th>
+                            <th>Dosen</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="3">Senin</td>
+                            <td>08:00 - 09:40</td>
+                            <td>Algoritma dan Pemrograman</td>
+                            <td>Lab Komputer 1</td>
+                            <td>Dr. Budi Santoso</td>
+                        </tr>
+                        <tr>
+                            <td>10:00 - 11:40</td>
+                            <td>Matematika Diskrit</td>
+                            <td>Ruang 301</td>
+                            <td>Prof. Siti Aminah</td>
+                        </tr>
+                        <tr>
+                            <td>13:00 - 14:40</td>
+                            <td>Bahasa Inggris</td>
+                            <td>Ruang 201</td>
+                            <td>Mrs. Sarah Johnson</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2">Selasa</td>
+                            <td>08:00 - 10:30</td>
+                            <td>Basis Data</td>
+                            <td>Lab Database</td>
+                            <td>Dr. Hendra Wijaya</td>
+                        </tr>
+                        <tr>
+                            <td>13:00 - 15:30</td>
+                            <td>Jaringan Komputer</td>
+                            <td>Lab Jaringan</td>
+                            <td>Ir. Ahmad Fauzi</td>
+                        </tr>
+                        <tr>
+                            <td>Rabu</td>
+                            <td colspan="4">Libur - Kegiatan Kemahasiswaan</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2">Kamis</td>
+                            <td>09:00 - 11:30</td>
+                            <td>Sistem Operasi</td>
+                            <td>Lab Komputer 2</td>
+                            <td>Dr. Rini Puspita</td>
+                        </tr>
+                        <tr>
+                            <td>13:00 - 14:40</td>
+                            <td>Kalkulus</td>
+                            <td>Ruang 302</td>
+                            <td>Dr. Joko Susilo</td>
+                        </tr>
+                        <tr>
+                            <td>Jumat</td>
+                            <td>08:00 - 09:40</td>
+                            <td colspan="2">Pendidikan Agama</td>
+                            <td>Dr. H. Mahmud</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="button-container">
+                    <button class="btn" onclick="showPage('home')">Kembali ke Profil</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2023 Kartika adinda kd - Ilmu komputer
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show the selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
