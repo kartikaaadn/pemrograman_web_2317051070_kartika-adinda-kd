@@ -9,6 +9,7 @@
     <h2>Edit Data Mahasiswa</h2>
     
     <?php
+    // Ambil data mahasiswa berdasarkan ID
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
         $query = mysqli_query($conn, "SELECT * FROM mahasiswa WHERE id = $id");
